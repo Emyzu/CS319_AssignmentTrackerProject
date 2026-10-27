@@ -1,2 +1,1 @@
-# CS319_AssignmentTrackerProject
-This is my project for CS319, which is an assignment tracker. 
+Working on the cs319 sprint 1 assignment
