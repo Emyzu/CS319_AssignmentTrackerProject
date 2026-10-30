@@ -4,24 +4,73 @@
     box-sizing: border-box;
 }
 
-.section {
+.wrapper {
+    height: 100vh;
+    display: flex;
+    
+}
+
+nav {
+    position: fixed;
+    height: 5rem;
+    border:2px solid blue;
     width: 100%;
-    height: 40rem;
+}
+
+.addAssignmentPopup {
+    position: absolute;
+    top:0;
+    z-index:100;
+    border:2px solid blue;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 255, 255, 0.256);
+    display: none;
 }
 
 .addAssignment {
-    width: 40rem;
-    padding: 3rem;
+    background-color: white;
+    width: 40%;
+    height: 60%;
+    padding: 5rem;
+    border-radius: 2rem;
+    box-shadow: 2px 2px 5px 2px rgba(100, 100, 100, 0.529);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border:2px solid;
 }
 
 .addAssignment input, .addAssignment textarea, .addAssignment button {
     width: 70%;
+}
+
+.rightCol, .leftCol {
+    margin-top:5rem;
+    width: 50%;
+    border:2px solid green;
+}
+
+.dashboard {
+    background-color: blueviolet;
+    height: 8rem;
+    width: 90%;
+    border-radius: 2rem;
+    margin:auto;
+    margin-top:2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.dashboard button {
+    background-color: #fff;
+    padding:2rem;
+    width: 15rem;
+    border-radius: 2rem;
+    border:none;
 }
