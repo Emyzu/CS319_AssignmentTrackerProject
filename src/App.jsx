@@ -1,5 +1,6 @@
 import {React, useState} from 'react'
 import Assignment from './Assignment.jsx'
+import Calendar from './Calendar.jsx';
 import './App.css';
 
 
@@ -12,21 +13,25 @@ const App = () => {
         <nav>
           Assignment Tracker
         </nav>
-        <div className="rightCol">
+        <div className="leftCol">
           <div className="dashboard">
             <button>Add Assignment</button>
             <button>filter by</button>
           </div>
+          <div className="assignmentsList">
+            <Assignment />
+          </div>
         </div>
-        <div className="leftCol">
+        <div className="rightCol">
           <div className="calendar">
-            Calendar
+            <Calendar/>
           </div>
         </div>
 
         <div className='addAssignmentPopup'>
           <div className="addAssignment">
-            <p>X</p>
+            <p className='assignmentTitle'>Add Your Assignment</p>
+            <p className='x'>X</p>
             <input type="text" placeholder='Enter Assignment Name' />
             <input type="date" />
             <textarea placeholder='Enter Assignment Description' />
@@ -39,3 +44,4 @@ const App = () => {
 }
 
 export default App
+
