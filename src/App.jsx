@@ -14,19 +14,24 @@ const App = () => {
   const [assignmentDescription, setAssignmentDescription] = useState("");
 
   const addAssignment = () => {
-    const newAssignment = {
-      name: assignmentName,
-      date: assignmentDate,
-      description: assignmentDescription
-    };
 
-    const updatedAssignments = [...assignments, newAssignment];
-    setAssignments(updatedAssignments);
+    if(assignmentName == "" || assignmentDate == "" || assignmentDescription == "" ){
+      alert("Please fill out all the fields before submitting the assignment, thank you.");
+    } else {
+        const newAssignment = {
+          name: assignmentName,
+          date: assignmentDate,
+          description: assignmentDescription
+        };
 
-    setAssignmentName("");
-    setAssignmentDate("");
-    setAssignmentDescription("");
-    setDisplayAssignmentPopup(!displayAssignmentPopup);
+        const updatedAssignments = [...assignments, newAssignment];
+        setAssignments(updatedAssignments);
+
+        setAssignmentName("");
+        setAssignmentDate("");
+        setAssignmentDescription("");
+        setDisplayAssignmentPopup(!displayAssignmentPopup);
+    }
   }
 
   return (
