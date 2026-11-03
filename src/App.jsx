@@ -6,7 +6,28 @@ import './App.css';
 
 const App = () => {
 
+  const [displayAssignmentPopup, setDisplayAssignmentPopup] = useState(false); 
+  const [assignments, setAssignments] = useState([]);
 
+  const [assignmentName, setAssignmentName] = useState("");
+  const [assignmentDate, setAssignmentDate] = useState("");
+  const [assignmentDescription, setAssignmentDescription] = useState("");
+
+  const addAssignment = () => {
+    const newAssignment = {
+      name: assignmentName,
+      date: assignmentDate,
+      description: assignmentDescription
+    };
+
+    const updatedAssignments = [...assignments, newAssignment];
+    setAssignments(updatedAssignments);
+
+    setAssignmentName("");
+    setAssignmentDate("");
+    setAssignmentDescription("");
+    setDisplayAssignmentPopup(!displayAssignmentPopup);
+  }
 
   return (
     <div className='wrapper'>
@@ -15,11 +36,13 @@ const App = () => {
         </nav>
         <div className="leftCol">
           <div className="dashboard">
-            <button>Add Assignment</button>
+            <button onClick={() => setDisplayAssignmentPopup(!displayAssignmentPopup)}>Add Assignment</button>
             <button>filter by</button>
           </div>
           <div className="assignmentsList">
-            <Assignment />
+            {assignments.length == 0 ? "no assignments added yet" : (assignments.map((assignment) => (
+              <Assignment name={assignment.name} date={assignment.date} description={assignment.description} />
+            )))}
           </div>
         </div>
         <div className="rightCol">
@@ -28,16 +51,16 @@ const App = () => {
           </div>
         </div>
 
-        <div className='addAssignmentPopup'>
-          <div className="addAssignment">
+        {displayAssignmentPopup && <div className='addAssignmentPopup'>
+          <div className="addAssignmentContainer">
             <p className='assignmentTitle'>Add Your Assignment</p>
-            <p className='x'>X</p>
-            <input type="text" placeholder='Enter Assignment Name' />
-            <input type="date" />
-            <textarea placeholder='Enter Assignment Description' />
-            <button>Submit</button>
+            <div className='x' onClick={() => setDisplayAssignmentPopup(!displayAssignmentPopup)}>X</div>
+            <input type="text" placeholder='Enter Assignment Name' value={assignmentName} onChange={(e) => setAssignmentName(e.target.value)}/>
+            <input type="date" value={assignmentDate} onChange={(e) => setAssignmentDate(e.target.value)} />
+            <textarea placeholder='Enter Assignment Description' value={assignmentDescription} onChange={(e) => setAssignmentDescription(e.target.value)} />
+            <button onClick={() => addAssignment()}>Submit</button>
           </div>
-        </div>
+        </div>}
 
     </div>
   )

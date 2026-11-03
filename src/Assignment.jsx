@@ -1,13 +1,13 @@
 import React from 'react'
 
-const Assignment = () => {
+const Assignment = ({name, date, description}) => {
   return (
     <div className='assignmentContainer'>
       <div className="assignmentDetails">
-        <div className="assignmentHeader">Assignment Name</div>
-        <div className="assignmentDueDate">November 2, 2026</div>
+        <div className="assignmentHeader">{name}</div>
+        <div className="assignmentDueDate">{date}</div>
       </div>
-      <div className="assignmentDescription">This is the assignment description</div>
+      <div className="assignmentDescription">{description}</div>
     </div>
   )
 }
