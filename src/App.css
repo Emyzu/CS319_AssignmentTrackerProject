@@ -163,6 +163,7 @@ nav {
     align-items: center;
     justify-content: center;
     text-align: center;
+    flex-direction: column;
 }
 
 .assignmentsList {
@@ -202,3 +203,39 @@ nav {
     margin-top:2rem;
 }
 
+.calendarDays{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.calendarDays span{
+    width: calc(100% / 7);
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendarDaysNames{
+    width:100%;
+    display: flex;
+    margin:3rem 0;
+}
+
+.calendarDaysNames span{
+    width: calc(100% / 7);
+    letter-spacing: 0.1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.calendarButtons {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin:2rem 0;
+}
+
+.calendarButtons ion-icon {
+    font-size: 1.5rem;
+}
