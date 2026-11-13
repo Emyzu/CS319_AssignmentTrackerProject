@@ -11,12 +11,22 @@ const Calendar = () => {
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
 
+  const prevMonth = () => {
+    setCurrentMonth((prevMonth) => ( prevMonth === 0 ? 11 : prevMonth - 1 ));
+    setCurrentYear((prevYear) => (currentMonth === 0 ? prevYear - 1 : prevYear));
+  }
+
+  const nextMonth = () => {
+    setCurrentMonth((prevMonth) => ( prevMonth === 11 ? 0 : prevMonth + 1 ));
+    setCurrentYear((prevYear) => (currentMonth === 11 ? prevYear + 1 : prevYear));
+  }
+  
   return (
     <div className='calendarContainer'>
         <div className="calendarButtons">
-          <ion-icon name="arrow-back-sharp"></ion-icon>
+          <ion-icon name="arrow-back-sharp" onClick={prevMonth}></ion-icon>
           <p>{monthOfYear[currentMonth]} {currentYear}</p>
-          <ion-icon name="arrow-forward-sharp"></ion-icon>
+          <ion-icon name="arrow-forward-sharp" onClick={nextMonth}></ion-icon>
         </div>
         <div className="calendarDaysContainer">
           <div className="calendarDaysNames">
