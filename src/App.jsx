@@ -52,7 +52,7 @@ const App = () => {
         </div>
         <div className="rightCol">
           <div className="calendar">
-            <Calendar/>
+            <Calendar assignments={assignments}/>
           </div>
         </div>
 
