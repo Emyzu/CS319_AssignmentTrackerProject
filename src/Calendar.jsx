@@ -1,6 +1,6 @@
 import {React, useState} from 'react'
 
-const Calendar = ({assignments}) => {
+const Calendar = ({assignments = []}) => {
 
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const monthOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -26,7 +26,7 @@ const Calendar = ({assignments}) => {
     const dayAsString = String(day).padStart(2, '0');
     const fullDateString = `${currentYear}-${monthAsString}-${dayAsString}`;
 
-    return assignments.some((assignment) => assignment.date === fullDateString);
+    return assignments.find((assignment) => assignment.date === fullDateString);
   }
 
   return (
@@ -42,7 +42,7 @@ const Calendar = ({assignments}) => {
           </div>
           <div className="calendarDays">
             {[...Array(firstDayOfMonth).keys()].map((_, index) => ( <span key={`empty-${index}`} /> ))}
-            {[...Array(daysInMonth).keys()].map((day) => <span key={day + 1} className='day'> {day+1} {isAssignmentDue(day + 1) && <span className="assignmentDot"></span>}</span>)}
+            {[...Array(daysInMonth).keys()].map((day) => <span key={day + 1} className='day'> {day+1} {isAssignmentDue(day + 1) && <span className="assignmentDot" style={{backgroundColor: isAssignmentDue(day + 1).dotColor}}></span>}</span>)}
           </div>
         </div>
     </div>
