@@ -13,6 +13,8 @@ const App = () => {
   const [assignmentDate, setAssignmentDate] = useState("");
   const [assignmentDescription, setAssignmentDescription] = useState("");
 
+  const assignmentDotColors = ["#FF0000", "#0000FF", "#00FF00"];
+
   const addAssignment = () => {
 
     if(assignmentName == "" || assignmentDate == "" || assignmentDescription == "" ){
@@ -21,7 +23,8 @@ const App = () => {
         const newAssignment = {
           name: assignmentName,
           date: assignmentDate,
-          description: assignmentDescription
+          description: assignmentDescription,
+          dotColor: assignmentDotColors[assignments.length % assignmentDotColors.length],
         };
 
         const updatedAssignments = [...assignments, newAssignment];
@@ -32,6 +35,11 @@ const App = () => {
         setAssignmentDescription("");
         setDisplayAssignmentPopup(!displayAssignmentPopup);
     }
+  }
+
+  const clickedDay = (date) => {
+    setAssignmentDate(date);
+    setDisplayAssignmentPopup(true);
   }
 
   return (
@@ -46,13 +54,13 @@ const App = () => {
           </div>
           <div className="assignmentsList">
             {assignments.length == 0 ? "no assignments added yet" : (assignments.map((assignment) => (
-              <Assignment name={assignment.name} date={assignment.date} description={assignment.description} />
+              <Assignment name={assignment.name} date={assignment.date} description={assignment.description} dotColor={assignment.dotColor} />
             )))}
           </div>
         </div>
         <div className="rightCol">
           <div className="calendar">
-            <Calendar/>
+            <Calendar assignments={assignments} clickedDay={clickedDay} />
           </div>
         </div>
 
