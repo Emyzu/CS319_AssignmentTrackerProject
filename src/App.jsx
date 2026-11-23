@@ -37,6 +37,11 @@ const App = () => {
     }
   }
 
+  const clickedDay = (date) => {
+    setAssignmentDate(date);
+    setDisplayAssignmentPopup(true);
+  }
+
   return (
     <div className='wrapper'>
         <nav>
@@ -55,7 +60,7 @@ const App = () => {
         </div>
         <div className="rightCol">
           <div className="calendar">
-            <Calendar assignments={assignments}/>
+            <Calendar assignments={assignments} clickedDay={clickedDay} />
           </div>
         </div>
 
