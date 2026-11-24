@@ -1,4 +1,5 @@
 import {React, useState} from 'react'
+import DueDateDot from './DueDateDot';
 
 const Calendar = ({assignments = [], clickedDay}, ) => {
 
@@ -21,20 +22,20 @@ const Calendar = ({assignments = [], clickedDay}, ) => {
     setCurrentYear((prevYear) => (currentMonth === 11 ? prevYear + 1 : prevYear));
   }
   
-  const isAssignmentDue = (day) => {
+  const formatDate = (day) => {
     const monthAsString = String(currentMonth + 1).padStart(2, '0');
     const dayAsString = String(day).padStart(2, '0');
-    const fullDateString = `${currentYear}-${monthAsString}-${dayAsString}`;
+    return(`${currentYear}-${monthAsString}-${dayAsString}`);
+  }
 
-    return assignments.find((assignment) => assignment.date === fullDateString);
+  const isAssignmentDue = (day) => {
+    const formattedDate = formatDate(day);
+    return assignments.find((assignment) => assignment.date === formattedDate);
   }
 
   const clickedDayActive = (day) => {
-    const monthAsString = String(currentMonth + 1).padStart(2, '0');
-    const dayAsString = String(day).padStart(2, '0');
-    const fullDateString = `${currentYear}-${monthAsString}-${dayAsString}`;
-
-    clickedDay(fullDateString);
+    const formattedDate = formatDate(day);
+    clickedDay(formattedDate);
   }
 
   return (
@@ -50,7 +51,7 @@ const Calendar = ({assignments = [], clickedDay}, ) => {
           </div>
           <div className="calendarDays">
             {[...Array(firstDayOfMonth).keys()].map((_, index) => ( <span key={`empty-${index}`} /> ))}
-            {[...Array(daysInMonth).keys()].map((day) => <span key={day + 1} className='day' onClick={() => clickedDayActive(day+1)}> {day+1} {isAssignmentDue(day + 1) && <span className="assignmentDot" style={{backgroundColor: isAssignmentDue(day + 1).dotColor}}></span>}</span>)}
+            {[...Array(daysInMonth).keys()].map((day) => <span key={day + 1} className='day' onClick={() => clickedDayActive(day+1)}> {day+1} {isAssignmentDue(day + 1) && <DueDateDot className={"assignmentDot"} dotColor={isAssignmentDue(day + 1).dotColor}> </DueDateDot>}</span>)}
           </div>
         </div>
     </div>

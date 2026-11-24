@@ -49,7 +49,7 @@ const App = () => {
         </nav>
         <div className="leftCol">
           <div className="dashboard">
-            <button onClick={() => setDisplayAssignmentPopup(!displayAssignmentPopup)}>Add Assignment</button>
+            <button onClick={() => {setDisplayAssignmentPopup(!displayAssignmentPopup); setAssignmentDate("");}}>Add Assignment</button>
             <button>filter by</button>
           </div>
           <div className="assignmentsList">
