@@ -210,7 +210,7 @@ nav {
     font-size: 1.2rem;
 }
 
-.day{
+.calendarDays > span {
     width: calc(100% / 7);
     aspect-ratio: 1;
     display: flex;
@@ -218,6 +218,9 @@ nav {
     align-items: center;
     position: relative;
     flex-direction: column;
+}
+
+.day{
     transition:all .2s ease-in-out;
     cursor: pointer;
 }
